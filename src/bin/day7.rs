@@ -18,8 +18,6 @@ enum Command {
 /*
     File system owns the directories
     Directory owns the files
-
-
 */
 
 #[derive(Clone, Debug)]
@@ -203,7 +201,7 @@ fn main() {
     // Calculate sizes
     let full_size = file_system.size_of("/".to_string());
     let mut size_under_100k = 0;
-    for (dir, size) in file_system.directory_sizes.clone() {
+    for (_, size) in file_system.directory_sizes.clone() {
         if size <= 100000 {
             size_under_100k += size;
         }
@@ -214,7 +212,7 @@ fn main() {
 
     // Part 2
     let mut smallest_delete = 70000000;
-    for (dir, size) in file_system.directory_sizes.clone() {
+    for (_, size) in file_system.directory_sizes.clone() {
         if size > (full_size + 30000000 - 70000000) && size < smallest_delete {
             smallest_delete = size;
         }
